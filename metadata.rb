@@ -9,6 +9,7 @@ version '1.0.0'
 supports 'centos', '>= 6.0'
 supports 'redhat', '>= 6.0'
 
+depends 'java'
 depends 'libarchive'
 depends 'poise-service'
 depends 'zookeeper-cluster'
