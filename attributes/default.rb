@@ -1,15 +1,14 @@
 #
-# Cookbook Name:: kafka-cluster
-# Recipe:: default
+# Cookbook: kafka-cluster-cookbook
+# License: Apache 2.0
 #
 # Copyright (C) 2015 Bloomberg Finance L.P.
 #
-# All rights reserved - Do Not Redistribute
-#
-default['kafka']['version'] = ''
-default['kafka']['url'] = ''
-default['kafka']['checksum'] = ''
-default['kafka']['install_path'] = '/opt/kafka'
+default['kafka-cluster']['cluster_name'] = 'kafka'
 
-default['kafka']['service_name'] = 'kafka'
-default['kafka']['username'] = 'kafka'
+default['kafka-cluster']['username'] = 'kafka'
+
+default['kafka-cluster']['init_type'] = :sysvinit
+default['kafka-cluster']['version'] = ''
+default['kafka-cluster']['remote_checksum'] = ''
+default['kafka-cluster']['remote_url'] = "http://mirror.cc.columbia.edu/pub/software/apache/kafka/kafka-%{version}/kafka-%{version}.tar.gz"

@@ -1,9 +1,9 @@
 name 'kafka-cluster'
 maintainer 'John Bellone'
 maintainer_email 'jbellone@bloomberg.net'
-license 'All rights reserved'
-description 'Installs/Configures kafka-cluster'
-long_description 'Installs/Configures kafka-cluster'
+license 'Apache 2.0'
+description 'Installs and configures Apache Kafka.'
+long_description 'Installs and configures Apache Kafka.'
 version '1.0.0'
 
 supports 'centos', '>= 6.0'

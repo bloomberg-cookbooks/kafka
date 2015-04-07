@@ -1,20 +1,18 @@
 #
-# Cookbook Name:: kafka-cluster
-# Recipe:: default
+# Cookbook: kafka-cluster-cookbook
+# License: Apache 2.0
 #
 # Copyright (C) 2015 Bloomberg Finance L.P.
 #
-# All rights reserved - Do Not Redistribute
-#
-include_recipe 'libarchive::default'
+node.default['java']['jdk_version'] = '7'
+include_recipe 'java::default'
 
-libarchive_file "apache-kafka-#{node['kafka']['version']}.tar.gz" do
-  path node['kafka']['install_path']
-  url node['kafka']['url'] % { version: node['kafka']['version'] }
-  checksum node['kafka']['checksum']
-end
-
-poise_service_user node['kafka']['user']
-poise_service node['kafka']['service_name'] do
-
+user = poise_service_user node['kafka-cluster']['username']
+libartifact_file "kafka-#{node['kafka-cluster']['version']}" do
+  artifact_name 'kafka'
+  artifact_version node['kafka-cluster']['version']
+  remote_url node['kafka-cluster']['remote_url'] % { version: artifact_version }
+  remote_checksum node['kafka-cluster']['remote_checksum']
+  owner user.name
+  group user.group if user.group
 end

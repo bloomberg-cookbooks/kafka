@@ -1,3 +1,2 @@
-# 0.1.0
-
-Initial release of kafka-cluster
+# 1.0.0
+Initial release of the Kafka cluster cookbook.
