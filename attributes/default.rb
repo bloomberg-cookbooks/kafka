@@ -6,6 +6,8 @@
 #
 default['kafka-cluster']['cluster_name'] = 'kafka'
 
+default['kafka-cluster']['config']['broker_id'] = 1
+
 default['kafka-cluster']['username'] = 'kafka'
 default['kafka-cluster']['groupname'] = 'kafka'
 
