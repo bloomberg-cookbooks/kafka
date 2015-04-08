@@ -7,6 +7,7 @@
 default['kafka-cluster']['cluster_name'] = 'kafka'
 
 default['kafka-cluster']['username'] = 'kafka'
+default['kafka-cluster']['groupname'] = 'kafka'
 
 default['kafka-cluster']['init_type'] = :sysvinit
 default['kafka-cluster']['version'] = '0.8.2.1'
