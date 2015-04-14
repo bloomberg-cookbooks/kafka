@@ -4,7 +4,7 @@
 #
 # Copyright (C) 2015 Bloomberg Finance L.P.
 #
-class Chef::Resource::KafkaClusterConfig < Chef::Resource::LWRP
+class Chef::Resource::KafkaCluster < Chef::Resource::LWRP
   include Poise
 
   actions(:create, :remove)

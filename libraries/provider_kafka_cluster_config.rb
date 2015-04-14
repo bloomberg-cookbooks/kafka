@@ -7,21 +7,16 @@
 require 'forwardable'
 
 class Chef::Provider::KafkaClusterConfig < Chef::Provider::LWRP
+  include Poise
   extend Forwardable
   def_delegators :@new_resource, :cluster_name
 
   use_inline_resources if defined?(use_inline_resources)
   provides :kafka_cluster_config
 
-  def whyrun_enabled?
-    true
-  end
-
   action :create do
-
   end
 
   action :remove do
-
   end
 end

@@ -10,6 +10,6 @@ supports 'centos', '>= 6.0'
 supports 'redhat', '>= 6.0'
 
 depends 'java'
-depends 'libarchive'
+depends 'libartifact'
 depends 'poise-service'
 depends 'zookeeper-cluster'
