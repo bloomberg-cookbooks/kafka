@@ -13,5 +13,5 @@ default['kafka-cluster']['config']['broker_id'] = 1
 
 default['kafka-cluster']['service']['version'] = '0.8.2.1'
 default['kafka-cluster']['service']['environment']['KAFKA_HEAP_OPTS'] = '-Xmx1G -Xms1G'
-default['kafka-cluster']['service']['binary_checksum'] = 'a043655be6f3b6ec3f7eea25cc6525fd582da825972d3589b24912af71493a21'
-default['kafka-cluster']['service']['binary_url'] = "http://mirror.cc.columbia.edu/pub/software/apache/kafka/%{version}/kafka-%{version}-src.tgz"
+default['kafka-cluster']['service']['binary_checksum'] = '89ede9ae0f51f7163c4140d8ab43fcedf8eb3066bb8058f3d97f75e9868899ce'
+default['kafka-cluster']['service']['binary_url'] = "http://apache.cs.utah.edu/kafka/%{version}/kafka_2.10-%{version}.tgz"

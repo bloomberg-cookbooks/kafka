@@ -18,6 +18,7 @@ class Chef::Resource::KafkaConfig < Chef::Resource
 
   attribute(:port, kind_of: Integer, default: 6667)
   attribute(:broker_id, kind_of: [String, Integer], required: true)
+  attribute(:zookeeper_connect, kind_of: String, required: true)
   attribute(:log_dirs, kind_of: String, default: '/var/tmp/kafka')
 
   attribute(:options, option_collector: true, default: {})
@@ -27,6 +28,7 @@ class Chef::Resource::KafkaConfig < Chef::Resource
     options.merge(
       'broker.id' => broker_id,
       'port' => port,
+      'zookeeper.connect' => zookeeper_connect,
       'log.dirs' => log_dirs).map { |v| v.join('=') }.join("\n")
   end
 
@@ -34,14 +36,12 @@ class Chef::Resource::KafkaConfig < Chef::Resource
     notifying_block do
       directory ::File.dirname(new_resource.path) do
         recursive true
-        mode '0754'
+        mode '0755'
       end
 
       file new_resource.path do
         content new_resource.to_s
-        mode '0640'
-        owner new_resource.user
-        group new_resource.group
+        mode '0644'
       end
     end
   end

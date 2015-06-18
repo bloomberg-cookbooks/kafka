@@ -70,7 +70,7 @@ class Chef::Resource::KafkaService < Chef::Resource
   end
 
   def current_path
-    ::File.join(install_path, 'kafka', 'current', "kafka-#{version}-src")
+    ::File.join(install_path, 'kafka', 'current', "kafka_2.10-#{version}")
   end
 
   def command
@@ -103,14 +103,14 @@ class Chef::Provider::KafkaService < Chef::Provider
 
       directory new_resource.data_dir do
         recursive true
-        mode '0754'
+        mode '0755'
         owner new_resource.user
         group new_resource.group
       end
 
       directory new_resource.log_dir do
         recursive true
-        mode '0754'
+        mode '0755'
         owner new_resource.user
         group new_resource.group
       end
