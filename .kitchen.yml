@@ -6,6 +6,7 @@ provisioner:
   name: chef_zero
 
 platforms:
+  - name: ubuntu-15.04
   - name: ubuntu-14.04
   - name: ubuntu-12.04
   - name: centos-7.1
@@ -14,4 +15,4 @@ platforms:
 suites:
   - name: default
     run_list:
-      - "recipe[kafka-cluster::default]"
+      - "recipe[test-cluster::default]"

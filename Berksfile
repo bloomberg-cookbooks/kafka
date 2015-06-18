@@ -1,8 +1,7 @@
 source 'https://supermarket.chef.io'
-extension 'halite'
-
-cookbook 'libartifact', git: 'https://bbgithub.dev.bloomberg.com/jbellone/libartifact-cookbook'
-cookbook 'poise', gem: 'poise'
-cookbook 'poise-service', gem: 'poise-service'
-cookbook 'zookeeper-cluster', git: 'https://bbgithub.dev.bloomberg.com/jbellone/zookeeper-cluster-cookbook'
+cookbook 'zookeeper-cluster', git: 'https://bbgithub.dev.bloomberg.com/chef-cookbooks/zookeeper-cluster'
 metadata
+
+group :test, :development do
+  cookbook 'test-cluster', path: File.expand_path('../test/fixtures/test-cluster', __FILE__)
+end
