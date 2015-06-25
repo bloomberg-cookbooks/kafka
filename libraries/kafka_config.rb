@@ -22,11 +22,11 @@ class Chef::Resource::KafkaConfig < Chef::Resource
   # what Kafka daemon consumes to tweak its internal configuration.
   def to_s
     properties.merge({}) do |k, o, n|
-      n = if o.kind_of?(Array)
-            o.flatten.map(&:to_s).join(',')
-          else
-            o
-          end
+      if n.kind_of?(Array)
+        n.flatten.map(&:to_s).join(',')
+      else
+        n
+      end
     end.map { |kv| kv.join('=') }.join("\n")
   end
 

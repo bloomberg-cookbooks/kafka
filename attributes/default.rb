@@ -9,7 +9,7 @@ default['kafka-cluster']['service_user'] = 'kafka'
 default['kafka-cluster']['service_group'] = 'kafka'
 
 # @see https://gist.github.com/jkreps/c7ddb4041ef62a900e6c
-default['kafka-cluster']['config']['path'] = '/etc/kafka/kafka.cfg'
+default['kafka-cluster']['config']['path'] = '/etc/kafka/kafka.properties'
 default['kafka-cluster']['config']['properties']['broker.id'] = 1
 default['kafka-cluster']['config']['properties']['port'] = 9092
 default['kafka-cluster']['config']['properties']['num.partitions'] = 8
