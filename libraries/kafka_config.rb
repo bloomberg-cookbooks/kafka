@@ -16,20 +16,18 @@ class Chef::Resource::KafkaConfig < Chef::Resource
   attribute(:user, kind_of: String, default: 'kafka', cannot_be: :empty)
   attribute(:group, kind_of: String, default: 'kafka', cannot_be: :empty)
 
-  attribute(:port, kind_of: Integer, default: 6667)
-  attribute(:broker_id, kind_of: [String, Integer], required: true)
-  attribute(:zookeeper_connect, kind_of: String, required: true)
-  attribute(:log_dirs, kind_of: String, default: '/var/tmp/kafka')
+  attribute(:properties, option_collector: true, default: {})
 
-  attribute(:options, option_collector: true, default: {})
-
-  # @see https://kafka.apache.org/08/configuration.html
+  # Outputs the +properties+ in the Java Properties file format. This is
+  # what Kafka daemon consumes to tweak its internal configuration.
   def to_s
-    options.merge(
-      'broker.id' => broker_id,
-      'port' => port,
-      'zookeeper.connect' => zookeeper_connect,
-      'log.dirs' => log_dirs).map { |v| v.join('=') }.join("\n")
+    properties.merge({}) do |k, o, n|
+      n = if o.kind_of?(Array)
+            o.flatten.map(&:to_s).join(',')
+          else
+            o
+          end
+    end.map { |kv| kv.join('=') }.join("\n")
   end
 
   action(:create) do
