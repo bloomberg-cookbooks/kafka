@@ -12,6 +12,7 @@ class Chef::Resource::KafkaService < Chef::Resource
   include Poise
   provides(:kafka_service)
   include PoiseService::ServiceMixin
+  default_action(:enable)
 
   # @!attribute service_name
   # @return [String]
