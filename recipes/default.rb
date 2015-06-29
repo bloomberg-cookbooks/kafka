@@ -4,8 +4,6 @@
 #
 # Copyright (C) 2015 Bloomberg Finance L.P.
 #
-include_recipe 'zookeeper-cluster::default'
-
 node.default['sysctl']['params']['vm']['swappiness'] = 0
 include_recipe 'sysctl::apply'
 

@@ -10,9 +10,10 @@ supports 'ubuntu', '>= 12.04'
 supports 'centos', '>= 6.6'
 supports 'redhat', '>= 6.6'
 
+suggests 'zookeeper-cluster'
+
 depends 'libartifact', '~> 1.2'
 depends 'poise', '~> 2.0'
 depends 'poise-service'
 depends 'sysctl'
 depends 'ulimit'
-depends 'zookeeper-cluster'
