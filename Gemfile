@@ -17,7 +17,10 @@ group :kitchen_cloud do
 end
 
 group :unit do
-  gem 'berkshelf'
+  gem 'berkshelf', git: 'https://github.com/berkshelf/berkshelf'
+  gem 'berkshelf-api-client', git: 'https://github.com/berkshelf/berkshelf-api-client'
+  gem 'faraday', git: 'https://github.com/lostisland/faraday'
+  gem 'ridley', git: 'https://github.com/johnbellone/ridley'
   gem 'chefspec'
 end
 
