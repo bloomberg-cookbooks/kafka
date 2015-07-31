@@ -1,0 +1,16 @@
+---
+language: ruby
+notifications:
+  slack: blpsi:BvYmxrV9xj902XWTRNrkLNkR
+script:
+  - bin/rubocop
+  - bin/rspec
+rvm:
+  - 2.1
+  - 2.2
+branches:
+  only:
+    - master
+builder_args: --without kitchen_vagrant
+matrix:
+  fast_finish: true

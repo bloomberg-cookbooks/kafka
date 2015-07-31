@@ -4,6 +4,12 @@
 #
 # Copyright (C) 2015 Bloomberg Finance L.P.
 #
+include_recipe 'selinux::permissive'
+
+node.default['java']['jdk_version'] = '7'
+node.default['java']['accept_license_agreement'] = true
+include_recipe 'java::default'
+
 node.default['sysctl']['params']['vm']['swappiness'] = 0
 include_recipe 'sysctl::apply'
 
@@ -12,12 +18,12 @@ poise_service_user node['kafka-cluster']['service_user'] do
 end
 
 user_ulimit node['kafka-cluster']['service_user'] do
-  filehandle_limit 32768
+  filehandle_limit 32_768
   notifies :restart, "kafka_service[#{node['kafka-cluster']['service_name']}]", :delayed
 end
 
 kafka_config node['kafka-cluster']['service_name'] do |r|
-  user node['kafka-cluster']['service_user']
+  owner node['kafka-cluster']['service_user']
   group node['kafka-cluster']['service_group']
 
   node['kafka-cluster']['config'].each_pair { |k, v| r.send(k, v) }
@@ -30,4 +36,5 @@ kafka_service node['kafka-cluster']['service_name'] do |r|
   config_path node['kafka-cluster']['config']['path']
 
   node['kafka-cluster']['service'].each_pair { |k, v| r.send(k, v) }
+  action [:create, :enable]
 end

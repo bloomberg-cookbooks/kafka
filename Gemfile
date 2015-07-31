@@ -1,7 +1,11 @@
 source 'https://rubygems.org'
+gem 'poise', '~> 2.0'
+gem 'poise-service', '~> 1.0'
+gem 'poise-boiler'
 
 group :lint do
   gem 'rubocop'
+  gem 'foodcritic'
 end
 
 group :kitchen_common do
@@ -17,10 +21,7 @@ group :kitchen_cloud do
 end
 
 group :unit do
-  gem 'berkshelf', git: 'https://github.com/berkshelf/berkshelf'
-  gem 'berkshelf-api-client', git: 'https://github.com/berkshelf/berkshelf-api-client'
-  gem 'faraday', git: 'https://github.com/lostisland/faraday'
-  gem 'ridley', git: 'https://github.com/johnbellone/ridley'
+  gem 'berkshelf'
   gem 'chefspec'
 end
 
@@ -29,6 +30,7 @@ group :integration do
 end
 
 group :development do
+  gem 'awesome_print'
   gem 'guard'
   gem 'guard-kitchen'
   gem 'guard-rspec'

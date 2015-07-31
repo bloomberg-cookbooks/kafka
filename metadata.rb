@@ -12,8 +12,10 @@ supports 'redhat', '>= 6.6'
 
 suggests 'zookeeper-cluster'
 
-depends 'libartifact', '~> 1.2'
+depends 'java'
+depends 'libartifact', '~> 1.3'
 depends 'poise', '~> 2.0'
 depends 'poise-service'
+depends 'selinux'
 depends 'sysctl'
 depends 'ulimit'
