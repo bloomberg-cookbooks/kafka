@@ -5,9 +5,7 @@ describe KafkaClusterCookbook::Resource::KafkaConfig do
   step_into(:kafka_config)
   context '#action_create' do
     recipe do
-      kafka_config '/etc/kafka/kafka.properties' do
-
-      end
+      kafka_config '/etc/kafka/kafka.properties'
     end
 
     it { is_expected.to create_directory('/etc/kafka') }
