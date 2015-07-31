@@ -1,10 +1,26 @@
-require 'spec_helper'
+require 'poise_boiler/spec_helper'
+require_relative '../../../libraries/kafka_config'
 
-describe_recipe 'kafka-cluster::default' do
-  cached(:chef_run) { ChefSpec::SoloRunner.new(step_into: %w{kafka_config}).converge(described_recipe) }
-  context 'with default attributes' do
-    it 'converges successfully' do
-      chef_run
+describe KafkaClusterCookbook::Resource::KafkaConfig do
+  step_into(:kafka_config)
+  context '#action_create' do
+    recipe do
+      kafka_config '/etc/kafka/kafka.properties' do
+
+      end
     end
+
+    it { is_expected.to create_directory('/etc/kafka') }
+    it { is_expected.to create_file('/etc/kafka/kafka.properties') }
+  end
+
+  context '#action_delete' do
+    recipe do
+      kafka_config '/etc/kafka/kafka.properties' do
+        action :delete
+      end
+    end
+
+    it { is_expected.to delete_file('/etc/kafka/kafka.properties') }
   end
 end
