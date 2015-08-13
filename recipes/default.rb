@@ -36,5 +36,5 @@ kafka_service node['kafka-cluster']['service_name'] do |r|
   config_path node['kafka-cluster']['config']['path']
 
   node['kafka-cluster']['service'].each_pair { |k, v| r.send(k, v) }
-  action [:create, :enable]
+  action [:enable, :start]
 end

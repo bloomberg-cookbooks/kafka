@@ -14,8 +14,6 @@ module KafkaClusterCookbook
       include Poise
       provides(:kafka_service)
       include PoiseService::ServiceMixin
-      actions(:create)
-      default_action(:create)
 
       # @!attribute version
       # @return [String]
@@ -87,7 +85,7 @@ module KafkaClusterCookbook
       provides(:kafka_service)
       include PoiseService::ServiceMixin
 
-      def action_create
+      def action_enable
         notifying_block do
           package new_resource.package_name do
             version new_resource.version unless new_resource.version.nil?
@@ -102,11 +100,7 @@ module KafkaClusterCookbook
             remote_checksum new_resource.binary_checksum
             only_if { new_resource.install_method == 'binary' }
           end
-        end
-      end
 
-      def action_enable
-        notifying_block do
           directory new_resource.data_dir do
             recursive true
             mode '0755'
