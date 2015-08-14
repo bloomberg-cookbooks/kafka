@@ -6,7 +6,7 @@
 #
 include_recipe 'selinux::permissive'
 
-node.default['java']['jdk_version'] = '7'
+node.default['java']['jdk_version'] = '8'
 node.default['java']['accept_license_agreement'] = true
 include_recipe 'java::default'
 
