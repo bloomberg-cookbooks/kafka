@@ -9,7 +9,6 @@ describe_recipe 'kafka-cluster::default' do
   it { expect(chef_run).to create_poise_service_user('kafka').with(group: 'kafka') }
   it { expect(chef_run).to create_kafka_config('kafka') }
   it { expect(chef_run).to enable_kafka_service('kafka') }
-  it { expect(chef_run).to start_kafka_service('kafka') }
 
   context 'with default attributes' do
     it 'converges successfully' do
