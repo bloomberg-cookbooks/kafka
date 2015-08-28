@@ -2,9 +2,7 @@
 language: ruby
 notifications:
   slack: blpsi:BvYmxrV9xj902XWTRNrkLNkR
-script:
-  - bin/rubocop
-  - bin/rspec
+script: bundle exec rake travis
 rvm:
   - 2.1
   - 2.2
