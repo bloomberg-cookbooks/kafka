@@ -1,7 +1,7 @@
 ---
 language: ruby
 notifications:
-  slack: blpsi:BvYmxrV9xj902XWTRNrkLNkR
+  slack: bloomberg-rnd:eHp3Czg42iGzaTgG8sAFeD9v
 script: bundle exec rake travis
 rvm:
   - 2.1
