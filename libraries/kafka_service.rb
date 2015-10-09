@@ -72,7 +72,7 @@ module KafkaClusterCookbook
       end
 
       def command
-        "bin/kafka-server-start.sh #{config_path}"
+        ::File.join(current_path, "bin/kafka-server-start.sh #{config_path}")
       end
     end
   end
