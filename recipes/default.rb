@@ -4,7 +4,7 @@
 #
 # Copyright (C) 2015 Bloomberg Finance L.P.
 #
-include_recipe 'selinux::permissive'
+include_recipe 'selinux::disabled'
 
 node.default['java']['jdk_version'] = '8'
 node.default['java']['accept_license_agreement'] = true
@@ -36,5 +36,4 @@ kafka_service node['kafka-cluster']['service_name'] do |r|
   config_path node['kafka-cluster']['config']['path']
 
   node['kafka-cluster']['service'].each_pair { |k, v| r.send(k, v) }
-  action [:enable, :start]
 end
