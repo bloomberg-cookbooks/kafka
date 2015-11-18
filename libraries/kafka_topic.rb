@@ -22,19 +22,30 @@ module KafkaClusterCookbook
       attribute(:partitions, kind_of: Integer, default: 1)
       attribute(:environment, kind_of: Hash, default: lazy { default_environment })
 
+      # Builds shell command for managing Kafka topics.
+      # @param type [String]
+      # @return [String]
       def command(type)
         ['kafka-topics.sh', "--#{type}"].tap do |c|
           c << ['--name', topic_name]
           c << ['--zookeeper', [zookeeper].compact.join(',')]
           c << ['--partitions', partitions] if partitions
-          c << ['--replication-factor', replication_factor] if replication_factor
+          if type.to_s == 'create'
+            c << ['--replication-factor', replication_factor] if replication_factor
+          end
         end.flatten.join(' ')
       end
 
-      def topic_exists?
+      # Builds shell command to check existence of Kafka topics.
+      # @return [String]
+      def exists_command
         ['kafka-topics.sh --list', '--zookeeper', zookeeper, '| grep -i', topic_name].join(' ')
       end
 
+      # The environment for shell command execution.
+      # @note The PATH value needs to include the directory
+      # with the script that ships with Kafka to manage topics.
+      # @return [Hash]
       def default_environment
         { 'PATH' => '/srv/kafka/current/bin:/usr/bin:/bin' }
       end
@@ -44,7 +55,7 @@ module KafkaClusterCookbook
           execute new_resource.command('create') do
             guard_interpreter :default
             environment new_resource.environment
-            not_if new_resource.topic_exists?
+            not_if new_resource.exists_command
           end
         end
       end
@@ -54,7 +65,7 @@ module KafkaClusterCookbook
           execute new_resource.command('alter') do
             guard_interpreter :default
             environment new_resource.environment
-            only_if new_resource.topic_exists?
+            only_if new_resource.exists_command
           end
         end
       end
@@ -64,7 +75,7 @@ module KafkaClusterCookbook
           execute new_resource.command('delete') do
             guard_interpreter :default
             environment new_resource.environment
-            only_if new_resource.topic_exists?
+            only_if new_resource.exists_command
           end
         end
       end
