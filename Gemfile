@@ -31,10 +31,6 @@ end
 
 group :development do
   gem 'awesome_print'
-  gem 'guard'
-  gem 'guard-kitchen'
-  gem 'guard-rspec'
-  gem 'guard-rubocop'
   gem 'rake'
   gem 'stove'
 end
