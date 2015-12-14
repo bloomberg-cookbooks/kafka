@@ -13,7 +13,7 @@ describe KafkaClusterCookbook::Resource::KafkaTopic do
       end
     end
 
-    it { is_expected.to run_execute('kafka-topics.sh --create --name test --zookeeper localhost:2181/kafka --partitions 1 --replication-factor 1') }
+    it { is_expected.to run_execute('kafka-topics.sh --create --topic test --zookeeper localhost:2181/kafka --partitions 1 --replication-factor 1') }
   end
 
   context '#action_delete' do
@@ -27,7 +27,7 @@ describe KafkaClusterCookbook::Resource::KafkaTopic do
       end
     end
 
-    it { is_expected.to run_execute('kafka-topics.sh --delete --name test --zookeeper localhost:2181/kafka --partitions 1') }
+    it { is_expected.to run_execute('kafka-topics.sh --delete --topic test --zookeeper localhost:2181/kafka --partitions 1') }
   end
 
   context '#action_update' do
@@ -41,6 +41,6 @@ describe KafkaClusterCookbook::Resource::KafkaTopic do
       end
     end
 
-    it { is_expected.to run_execute('kafka-topics.sh --alter --name test --zookeeper localhost:2181/kafka --partitions 1') }
+    it { is_expected.to run_execute('kafka-topics.sh --alter --topic test --zookeeper localhost:2181/kafka --partitions 1') }
   end
 end
