@@ -27,7 +27,7 @@ module KafkaClusterCookbook
       # @return [String]
       def command(type)
         ['kafka-topics.sh', "--#{type}"].tap do |c|
-          c << ['--name', topic_name]
+          c << ['--topic', topic_name]
           c << ['--zookeeper', [zookeeper].compact.join(',')]
           c << ['--partitions', partitions] if partitions
           if type.to_s == 'create'
