@@ -101,11 +101,13 @@ module KafkaClusterCookbook
             only_if { new_resource.install_method == 'binary' }
           end
 
-          directory new_resource.data_dir do
-            recursive true
-            mode '0755'
-            owner new_resource.user
-            group new_resource.group
+          new_resource.data_dir.split(',').each do |datadir|
+            directory datadir do
+              recursive true
+              mode '0755'
+              owner new_resource.user
+              group new_resource.group
+            end
           end
 
           directory new_resource.log_dir do

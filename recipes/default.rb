@@ -34,6 +34,7 @@ kafka_service node['kafka-cluster']['service_name'] do |r|
   user node['kafka-cluster']['service_user']
   group node['kafka-cluster']['service_group']
   config_path node['kafka-cluster']['config']['path']
+  data_dir node['kafka-cluster']['config']['properties']['log.dirs']
 
   node['kafka-cluster']['service'].each_pair { |k, v| r.send(k, v) }
 end
