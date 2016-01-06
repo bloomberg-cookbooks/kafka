@@ -50,7 +50,7 @@ module KafkaClusterCookbook
             source 'log4j.properties.erb' # TODO: support replacing template by defining [config][log4j][source].
             owner new_resource.owner
             group new_resource.group
-              mode '0644'
+            mode '0644'
             variables(
               loggerLevelRoot: new_resource.log4j['level']['root'],
               loggerLevelKafka: new_resource.log4j['level']['kafka'],
@@ -65,7 +65,7 @@ module KafkaClusterCookbook
               maxNumFiles: new_resource.log4j['maxNumFiles']
             )
             only_if new_resource.log4j['customized']
-	        end
+          end
         end
       end
 
