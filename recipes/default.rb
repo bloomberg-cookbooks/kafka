@@ -26,7 +26,7 @@ end
 if node['kafka-cluster']['config']['log4j']['customized']
   config_directory = ::File.dirname(node['kafka-cluster']['config']['path'])
   log4j_config =  ::File.join(config_directory, 'log4j.properties')
-  node['kafka-cluster']['service']['environment']['KAFKA_LOG4J_OPTS'] = "-Dlog4j.configuration=file:#{log4j_config}"
+  node.default['kafka-cluster']['service']['environment']['KAFKA_LOG4J_OPTS'] = "-Dlog4j.configuration=file:#{log4j_config}"
 end
 
 kafka_config node['kafka-cluster']['service_name'] do |r|
