@@ -47,12 +47,12 @@ module KafkaClusterCookbook
           end
 
           template ::File.join(config_directory, 'log4j.properties') do
-            # todo: support replacing template by defining [config][log4j][source]
+            # TODO: support replacing template by defining [config][log4j][source]
             source 'log4j.properties.erb'
-	    owner new_resource.owner
-	    group new_resource.group
-	    mode '0644'
-	    variables({
+            owner new_resource.owner
+            group new_resource.group
+              mode '0644'
+            variables(
               loggerLevelRoot: new_resource.log4j['level']['root'],
               loggerLevelKafka: new_resource.log4j['level']['kafka'],
               loggerLevelKafkaNetworkRequestChannel: new_resource.log4j['level']['kafka.network.RequestChannel'],
@@ -64,7 +64,7 @@ module KafkaClusterCookbook
               fileAppender: new_resource.log4j['fileAppender'],
               maxFileSize: new_resource.log4j['maxFileSize'],
               maxNumFiles: new_resource.log4j['maxNumFiles']
-	    })
+            )
             only_if new_resource.log4j['customized']
 	  end
         end
