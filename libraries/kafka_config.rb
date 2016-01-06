@@ -36,7 +36,7 @@ module KafkaClusterCookbook
 
       action(:create) do
         config_directory = ::File.dirname(new_resource.path)
-        notifying_block dodirectory config_directory do
+        notifying_block do
           directory config_directory do
             mode '0755'
           end
