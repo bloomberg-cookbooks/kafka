@@ -64,7 +64,7 @@ module KafkaClusterCookbook
               maxFileSize: new_resource.log4j['maxFileSize'],
               maxNumFiles: new_resource.log4j['maxNumFiles']
             )
-            only_if new_resource.log4j['customized']
+            only_if { new_resource.log4j['customized'] }
           end
         end
       end
