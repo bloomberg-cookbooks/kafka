@@ -46,28 +46,27 @@ module KafkaClusterCookbook
             mode '0644'
           end
 
-	  if not new_resource.log4j['customized']
-            template ::File.join(config_directory, 'log4j.properties') do
-              # todo: support replacing template by defining [config][log4j][source]
-              source 'log4j.properties.erb'
-	      owner new_resource.owner
-	      group new_resource.group
-	      mode '0644'
-	      variables({
-                loggerLevelRoot: new_resource.log4j['level']['root'],
-                loggerLevelKafka: new_resource.log4j['level']['kafka'],
-                loggerLevelKafkaNetworkRequestChannel: new_resource.log4j['level']['kafka.network.RequestChannel'],
-                loggerLevelKafkaNetworkProcessor: new_resource.log4j['level']['kafka.network.Processor'],
-                loggerLevelKafkaRequestLogger: new_resource.log4j['level']['kafka.request.logger'],
-                loggerLevelKafkaController: new_resource.log4j['level']['kafka.controller'],
-                loggerLevelKafkaLogCleaner: new_resource.log4j['level']['kafka.log.LogCleaner'],
-                loggerLevelStateChangeLogger: new_resource.log4j['level']['state.change.logger'],
-                fileAppender: new_resource.log4j['fileAppender'],
-                maxFileSize: new_resource.log4j['maxFileSize'],
-                maxNumFiles: new_resource.log4j['maxNumFiles']
-	      })
-	    end
-          end
+          template ::File.join(config_directory, 'log4j.properties') do
+            # todo: support replacing template by defining [config][log4j][source]
+            source 'log4j.properties.erb'
+	    owner new_resource.owner
+	    group new_resource.group
+	    mode '0644'
+	    variables({
+              loggerLevelRoot: new_resource.log4j['level']['root'],
+              loggerLevelKafka: new_resource.log4j['level']['kafka'],
+              loggerLevelKafkaNetworkRequestChannel: new_resource.log4j['level']['kafka.network.RequestChannel'],
+              loggerLevelKafkaNetworkProcessor: new_resource.log4j['level']['kafka.network.Processor'],
+              loggerLevelKafkaRequestLogger: new_resource.log4j['level']['kafka.request.logger'],
+              loggerLevelKafkaController: new_resource.log4j['level']['kafka.controller'],
+              loggerLevelKafkaLogCleaner: new_resource.log4j['level']['kafka.log.LogCleaner'],
+              loggerLevelStateChangeLogger: new_resource.log4j['level']['state.change.logger'],
+              fileAppender: new_resource.log4j['fileAppender'],
+              maxFileSize: new_resource.log4j['maxFileSize'],
+              maxNumFiles: new_resource.log4j['maxNumFiles']
+	    })
+            only_if new_resource.log4j['customized']
+	  end
         end
       end
 
