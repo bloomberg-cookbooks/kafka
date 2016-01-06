@@ -41,7 +41,6 @@ default['kafka-cluster']['config']['log4j']['level']['kafka.controller'] = 'TRAC
 default['kafka-cluster']['config']['log4j']['level']['kafka.log.LogCleaner'] = 'INFO'
 default['kafka-cluster']['config']['log4j']['level']['state.change.logger'] = 'TRACE'
 
-
 default['kafka-cluster']['service']['version'] = '0.8.2.1'
 default['kafka-cluster']['service']['environment']['KAFKA_HEAP_OPTS'] = '-Xmx1G -Xms1G'
 default['kafka-cluster']['service']['binary_checksum'] = '89ede9ae0f51f7163c4140d8ab43fcedf8eb3066bb8058f3d97f75e9868899ce'

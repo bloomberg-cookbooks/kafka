@@ -62,7 +62,7 @@ module KafkaClusterCookbook
                 loggerLevelKafkaController: new_resource.log4j['level']['kafka.controller'],
                 loggerLevelKafkaLogCleaner: new_resource.log4j['level']['kafka.log.LogCleaner'],
                 loggerLevelStateChangeLogger: new_resource.log4j['level']['state.change.logger'],
-                fileAppender: new_resource.log4j['fileAppender']
+                fileAppender: new_resource.log4j['fileAppender'],
                 maxFileSize: new_resource.log4j['maxFileSize'],
                 maxNumFiles: new_resource.log4j['maxNumFiles']
 	      })
