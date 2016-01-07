@@ -1,7 +1,7 @@
 # kafka-cluster-cookbook
 [![Build Status](https://img.shields.io/travis/bloomberg/kafka-cookbook.svg)](https://travis-ci.org/bloomberg/kafka-cookbook)
 [![Code Quality](https://img.shields.io/codeclimate/github/bloomberg/kafka-cookbook.svg)](https://codeclimate.com/github/bloomberg/kafka-cookbook)
-[![Cookbook Version](https://img.shields.io/cookbook/v/kafka.svg)](https://supermarket.chef.io/cookbooks/kafka)
+[![Cookbook Version](https://img.shields.io/cookbook/v/kafka-cluster.svg)](https://supermarket.chef.io/cookbooks/kafka-cluster)
 [![License](https://img.shields.io/badge/license-Apache_2-blue.svg)](https://www.apache.org/licenses/LICENSE-2.0)
 
 [Application cookbook][0] which installs and configures
