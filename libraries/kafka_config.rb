@@ -19,22 +19,24 @@ module KafkaClusterCookbook
       attribute(:group, kind_of: String, default: 'kafka')
 
       attribute(:properties, option_collector: true, default: {})
-      attribute(:log4j, option_collector: true, default: {
-        :customized => false,
-        :fileAppender => 'org.apache.log4j.RollingFileAppender',
-        :maxFileSize => '50MB',
-        :maxNumFiles => '20',
-        :level => {
-          :root => 'INFO',
-          :kafka => 'INFO',
-          :"kafka.network.RequestChannel" => 'WARN',
-          :"kafka.network.Processor" => 'WARN',
-          :"kafka.request.logger" => 'WARN',
-          :"kafka.controller" => 'TRACE',
-          :"kafka.log.LogCleaner" => 'INFO',
-          :"state.change.logger" => 'TRACE'
-        }
-      })
+      attribute(:log4j,
+                option_collector: true,
+                default: {
+                  "customized": false,
+                  "fileAppender": 'org.apache.log4j.RollingFileAppender',
+                  "maxFileSize": '50MB',
+                  "maxNumFiles": '20',
+                  "level": {
+                    "root": 'INFO',
+                    "kafka": 'INFO',
+                    "kafka.network.RequestChannel": 'WARN',
+                    "kafka.network.Processor": 'WARN',
+                    "kafka.request.logger": 'WARN',
+                    "kafka.controller": 'TRACE',
+                    "kafka.log.LogCleaner": 'INFO',
+                    "state.change.logger": 'TRACE'
+                  }
+                })
 
       # Outputs the +properties+ in the Java Properties file format. This is
       # what Kafka daemon consumes to tweak its internal configuration.
