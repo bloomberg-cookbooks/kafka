@@ -2,6 +2,13 @@
 AllCops:
   Exclude:
     - 'Guardfile'
+    - 'Rakefile'
+    - 'Vagrantfile'
+    - 'Policyfile.rb'
+    - 'Berksfile'
+    - 'Thorfile'
+    - 'Gemfile'
+    - 'metadata.rb'
     - 'test/**/*'
     - 'bin/**'
     - 'vendor/**/*'
