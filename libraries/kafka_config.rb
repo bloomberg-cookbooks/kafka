@@ -22,19 +22,19 @@ module KafkaClusterCookbook
       attribute(:log4j,
                 option_collector: true,
                 default: {
-                  "customized": false,
-                  "fileAppender": 'org.apache.log4j.RollingFileAppender',
-                  "maxFileSize": '50MB',
-                  "maxNumFiles": '20',
-                  "level": {
-                    "root": 'INFO',
-                    "kafka": 'INFO',
-                    "kafka.network.RequestChannel": 'WARN',
-                    "kafka.network.Processor": 'WARN',
-                    "kafka.request.logger": 'WARN',
-                    "kafka.controller": 'TRACE',
-                    "kafka.log.LogCleaner": 'INFO',
-                    "state.change.logger": 'TRACE'
+                  'customized' => false,
+                  'fileAppender' => 'org.apache.log4j.RollingFileAppender',
+                  'maxFileSize' => '50MB',
+                  'maxNumFiles' => '20',
+                  'level' => {
+                    'root' => 'INFO',
+                    'kafka' => 'INFO',
+                    'kafka.network.RequestChannel' => 'WARN',
+                    'kafka.network.Processor' => 'WARN',
+                    'kafka.request.logger' => 'WARN',
+                    'kafka.controller' => 'TRACE',
+                    'kafka.log.LogCleaner' => 'INFO',
+                    'state.change.logger' => 'TRACE'
                   }
                 })
 
@@ -61,11 +61,6 @@ module KafkaClusterCookbook
           file new_resource.path do
             content new_resource.to_s
             mode '0644'
-          end
-
-          log "#{new_resource.log4j}" do
-            message '==== A message add to the log.'
-            level :info
           end
 
           template ::File.join(config_directory, 'log4j.properties') do
