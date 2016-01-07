@@ -22,6 +22,13 @@ user_ulimit node['kafka-cluster']['service_user'] do
   notifies :restart, "kafka_service[#{node['kafka-cluster']['service_name']}]", :delayed
 end
 
+# set 'KAFKA_LOG4J_OPTS' if nodee['kafka-cluster']['config']['log4j']['customized'] is true
+if node['kafka-cluster']['config']['log4j']['customized']
+  config_directory = ::File.dirname(node['kafka-cluster']['config']['path'])
+  log4j_config = ::File.join(config_directory, 'log4j.properties')
+  node.default['kafka-cluster']['service']['environment']['KAFKA_LOG4J_OPTS'] = "-Dlog4j.configuration=file:#{log4j_config}"
+end
+
 kafka_config node['kafka-cluster']['service_name'] do |r|
   owner node['kafka-cluster']['service_user']
   group node['kafka-cluster']['service_group']
