@@ -39,7 +39,7 @@ module KafkaClusterCookbook
       # Builds shell command to check existence of Kafka topics.
       # @return [String]
       def exists_command
-        ['kafka-topics.sh --list', '--zookeeper', zookeeper, '| grep -i', topic_name].join(' ')
+        ['kafka-topics.sh --list', '--zookeeper', zookeeper, '| grep -w', topic_name].join(' ')
       end
 
       # The environment for shell command execution.
@@ -55,7 +55,7 @@ module KafkaClusterCookbook
           execute new_resource.command('create') do
             guard_interpreter :default
             environment new_resource.environment
-            not_if new_resource.exists_command
+            not_if new_resource.exists_command, environment: new_resource.environment
           end
         end
       end
@@ -65,7 +65,7 @@ module KafkaClusterCookbook
           execute new_resource.command('alter') do
             guard_interpreter :default
             environment new_resource.environment
-            only_if new_resource.exists_command
+            only_if new_resource.exists_command, environment: new_resource.environment
           end
         end
       end
@@ -75,7 +75,7 @@ module KafkaClusterCookbook
           execute new_resource.command('delete') do
             guard_interpreter :default
             environment new_resource.environment
-            only_if new_resource.exists_command
+            only_if new_resource.exists_command, environment: new_resource.environment
           end
         end
       end
