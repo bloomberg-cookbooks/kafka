@@ -39,7 +39,7 @@ module KafkaClusterCookbook
       # Builds shell command to check existence of Kafka topics.
       # @return [String]
       def exists_command
-        ['kafka-topics.sh --list', '--zookeeper', zookeeper, '| grep -i -w', topic_name].join(' ')
+        ['kafka-topics.sh --list', '--zookeeper', zookeeper, '| grep -w', topic_name].join(' ')
       end
 
       # The environment for shell command execution.
