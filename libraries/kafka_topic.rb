@@ -55,7 +55,7 @@ module KafkaClusterCookbook
           execute new_resource.command('create') do
             guard_interpreter :default
             environment new_resource.environment
-            not_if new_resource.exists_command, :environment => new_resource.environment
+            not_if new_resource.exists_command, environment: new_resource.environment
           end
         end
       end
@@ -65,7 +65,7 @@ module KafkaClusterCookbook
           execute new_resource.command('alter') do
             guard_interpreter :default
             environment new_resource.environment
-            only_if new_resource.exists_command, :environment => new_resource.environment
+            only_if new_resource.exists_command, environment: new_resource.environment
           end
         end
       end
@@ -75,7 +75,7 @@ module KafkaClusterCookbook
           execute new_resource.command('delete') do
             guard_interpreter :default
             environment new_resource.environment
-            only_if new_resource.exists_command, :environment => new_resource.environment
+            only_if new_resource.exists_command, environment: new_resource.environment
           end
         end
       end
