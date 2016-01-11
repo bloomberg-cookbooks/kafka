@@ -5,7 +5,7 @@ describe KafkaClusterCookbook::Resource::KafkaTopic do
   step_into(:kafka_topic)
   context '#action_create' do
     before do
-      stub_command('kafka-topics.sh --list --zookeeper localhost:2181/kafka | grep -i test').and_return(false)
+      stub_command('kafka-topics.sh --list --zookeeper localhost:2181/kafka | grep -i -w test').and_return(false)
     end
     recipe do
       kafka_topic 'test' do
@@ -18,7 +18,7 @@ describe KafkaClusterCookbook::Resource::KafkaTopic do
 
   context '#action_delete' do
     before do
-      stub_command('kafka-topics.sh --list --zookeeper localhost:2181/kafka | grep -i test').and_return(true)
+      stub_command('kafka-topics.sh --list --zookeeper localhost:2181/kafka | grep -i -w test').and_return(true)
     end
     recipe do
       kafka_topic 'test' do
@@ -32,7 +32,7 @@ describe KafkaClusterCookbook::Resource::KafkaTopic do
 
   context '#action_update' do
     before do
-      stub_command('kafka-topics.sh --list --zookeeper localhost:2181/kafka | grep -i test').and_return(true)
+      stub_command('kafka-topics.sh --list --zookeeper localhost:2181/kafka | grep -i -w test').and_return(true)
     end
     recipe do
       kafka_topic 'test' do
