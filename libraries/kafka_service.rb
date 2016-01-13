@@ -86,11 +86,11 @@ module KafkaClusterCookbook
       include PoiseService::ServiceMixin
 
       def action_enable
+        new_resource.notifies(:restart, new_resource, :delayed)
         notifying_block do
           package new_resource.package_name do
             version new_resource.version unless new_resource.version.nil?
             only_if { new_resource.install_method == 'package' }
-            notifies :restart, new_resource, :delayed
           end
 
           libartifact_file "kafka-#{new_resource.version}" do
@@ -100,7 +100,6 @@ module KafkaClusterCookbook
             remote_url new_resource.binary_url % { version: new_resource.version }
             remote_checksum new_resource.binary_checksum
             only_if { new_resource.install_method == 'binary' }
-            notifies :restart, new_resource, :delayed
           end
 
           new_resource.data_dir.split(',').each do |datadir|
