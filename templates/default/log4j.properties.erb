@@ -19,7 +19,7 @@ kafka.logs.dir=logs
 kafka.logs.fileappender=<%= @fileAppender%>
 kafka.logs.maxfilesize=<%= @maxFileSize%>
 kafka.logs.maxbackupindex=<%= @maxNumFiles%>
-log4j.rootLogger=INFO, stdout 
+log4j.rootLogger=<%= @loggerLevelRoot %>, stdout 
 
 log4j.appender.stdout=org.apache.log4j.ConsoleAppender
 log4j.appender.stdout.layout=org.apache.log4j.PatternLayout
