@@ -8,20 +8,16 @@ group :lint do
   gem 'foodcritic'
 end
 
-group :unit do
+group :test, :integration, :unit do
+  gem 'berkshelf'
+  gem 'chef-dk'
   gem 'chefspec'
-end
-
-group :integration do
-  gem 'serverspec'
+  gem 'inspec'
+  gem 'kitchen-inspec'
 end
 
 group :development do
   gem 'awesome_print'
-  gem 'guard'
-  gem 'guard-kitchen'
-  gem 'guard-rspec'
-  gem 'guard-rubocop'
   gem 'rake'
   gem 'stove'
 end
