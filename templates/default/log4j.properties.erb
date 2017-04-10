@@ -60,6 +60,13 @@ log4j.appender.controllerAppender.MaxBackupIndex=${kafka.logs.maxbackupindex}
 log4j.appender.controllerAppender.layout=org.apache.log4j.PatternLayout
 log4j.appender.controllerAppender.layout.ConversionPattern=[%d] %p %m (%c)%n
 
+log4j.appender.controllerAppender=${kafka.logs.fileappender}
+log4j.appender.controllerAppender.File=${kafka.logs.dir}/kafka-authorizer.log
+log4j.appender.controllerAppender.MaxFileSize=${kafka.logs.maxfilesize}
+log4j.appender.controllerAppender.MaxBackupIndex=${kafka.logs.maxbackupindex}
+log4j.appender.controllerAppender.layout=org.apache.log4j.PatternLayout
+log4j.appender.controllerAppender.layout.ConversionPattern=[%d] %p %m (%c)%n
+
 # Turn on all our debugging info
 #log4j.logger.kafka.producer.async.DefaultEventHandler=DEBUG, kafkaAppender
 #log4j.logger.kafka.client.ClientUtils=DEBUG, kafkaAppender
@@ -88,3 +95,6 @@ log4j.additivity.kafka.log.LogCleaner=false
 
 log4j.logger.state.change.logger=<%= @loggerLevelStateChangeLogger%>, stateChangeAppender
 log4j.additivity.state.change.logger=false
+
+log4j.logger.kafka.authorizer.logger=<%= @loggerLevelAuthroizerLogger%>, authorizerAppender
+log4j.additivity.kafka.authorizer.logger=false
