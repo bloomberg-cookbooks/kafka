@@ -34,7 +34,8 @@ module KafkaClusterCookbook
                     'kafka.request.logger' => 'WARN',
                     'kafka.controller' => 'TRACE',
                     'kafka.log.LogCleaner' => 'INFO',
-                    'state.change.logger' => 'TRACE'
+                    'state.change.logger' => 'TRACE',
+                    'kafka.authorizer.logger' => 'WARN'
                   }
                 })
 
@@ -77,6 +78,7 @@ module KafkaClusterCookbook
               loggerLevelKafkaController: new_resource.log4j['level']['kafka.controller'],
               loggerLevelKafkaLogCleaner: new_resource.log4j['level']['kafka.log.LogCleaner'],
               loggerLevelStateChangeLogger: new_resource.log4j['level']['state.change.logger'],
+              loggerLevelAuthroizerLogger: new_resource.log4j['level']['kafka.authorizer.logger'],
               fileAppender: new_resource.log4j['fileAppender'],
               maxFileSize: new_resource.log4j['maxFileSize'],
               maxNumFiles: new_resource.log4j['maxNumFiles']
