@@ -68,7 +68,7 @@ module KafkaClusterCookbook
       end
 
       def current_path
-        ::File.join(install_path, 'kafka', 'current', "kafka_2.12-#{version}")
+        ::File.join(install_path, 'kafka', 'current', "kafka_#{scala_version}-#{version}")
       end
 
       def command
