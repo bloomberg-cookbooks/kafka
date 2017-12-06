@@ -19,6 +19,10 @@ module KafkaClusterCookbook
       # @return [String]
       attribute(:version, kind_of: String, required: true)
 
+      # @!attribute scala_version
+      # @return [String]
+      attribute(:scala_version, kind_of: String, required: true)
+
       # @!attribute install_method
       # @return [Symbol]
       attribute(:install_method, default: 'binary', equal_to: %w{binary package})
@@ -68,7 +72,7 @@ module KafkaClusterCookbook
       end
 
       def current_path
-        ::File.join(install_path, 'kafka', 'current', "kafka_2.12-#{version}")
+        ::File.join(install_path, 'kafka', 'current', "kafka_#{scala_version}-#{version}")
       end
 
       def command
