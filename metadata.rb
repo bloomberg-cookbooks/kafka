@@ -6,7 +6,7 @@ issues_url 'https://github.com/bloomberg/kafka-cookbook/issues'
 source_url 'https://github.com/bloomberg/kafka-cookbook'
 description 'Application cookbook which installs and configures Apache Kafka.'
 long_description 'Application cookbook which installs and configures Apache Kafka.'
-version '1.3.10'
+version '1.4.0'
 chef_version '>= 12.1'
 
 supports 'ubuntu', '>= 12.04'
