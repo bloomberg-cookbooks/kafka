@@ -100,9 +100,9 @@ module KafkaClusterCookbook
             only_if { new_resource.install_method == 'package' }
           end
 
-          libartifact_file "kafka-#{new_resource.version}" do
+          libartifact_file "kafka_#{new_resource.scala_version}-#{new_resource.version}" do
             artifact_name 'kafka'
-            artifact_version new_resource.version
+            artifact_version "#{new_resource.scala_version}-#{new_resource.version}"
             install_path new_resource.install_path
             remote_url new_resource.binary_url % { version: new_resource.version, scala_version: new_resource.scala_version, mirror: new_resource.mirror }
             remote_checksum new_resource.binary_checksum
