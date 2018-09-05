@@ -29,7 +29,7 @@ module KafkaClusterCookbook
 
       # @!attribute install_method
       # @return [Symbol]
-      attribute(:install_method, default: 'binary', equal_to: %w{binary package})
+      attribute(:install_method, default: 'binary', equal_to: %w(binary package))
 
       # @!attribute install_path
       # @return [String]
@@ -104,7 +104,7 @@ module KafkaClusterCookbook
             artifact_name 'kafka'
             artifact_version "#{new_resource.scala_version}-#{new_resource.version}"
             install_path new_resource.install_path
-            remote_url new_resource.binary_url % { version: new_resource.version, scala_version: new_resource.scala_version, mirror: new_resource.mirror }
+            remote_url format(new_resource.binary_url, version: new_resource.version, scala_version: new_resource.scala_version, mirror: new_resource.mirror)
             remote_checksum new_resource.binary_checksum
             only_if { new_resource.install_method == 'binary' }
           end

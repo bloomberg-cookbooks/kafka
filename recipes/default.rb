@@ -10,8 +10,9 @@ node.default['java']['jdk_version'] = '8'
 node.default['java']['accept_license_agreement'] = true
 include_recipe 'java::default'
 
-node.default['sysctl']['params']['vm']['swappiness'] = 0
-include_recipe 'sysctl::apply'
+sysctl_param 'vm.swappiness' do
+  value 0
+end
 
 poise_service_user node['kafka-cluster']['service_user'] do
   group node['kafka-cluster']['service_group']
