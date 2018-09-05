@@ -24,6 +24,7 @@ log4j.rootLogger=<%= @loggerLevelRoot %>, stdout
 log4j.appender.stdout=org.apache.log4j.ConsoleAppender
 log4j.appender.stdout.layout=org.apache.log4j.PatternLayout
 log4j.appender.stdout.layout.ConversionPattern=[%d] %p %m (%c)%n
+log4j.appender.stdout.threshold=<%= @loggerStdoutThreshold %>
 
 log4j.appender.kafkaAppender=${kafka.logs.fileappender}
 log4j.appender.kafkaAppender.File=${kafka.logs.dir}/server.log
@@ -72,8 +73,12 @@ log4j.appender.authorizerAppender.layout.ConversionPattern=[%d] %p %m (%c)%n
 #log4j.logger.kafka.client.ClientUtils=DEBUG, kafkaAppender
 #log4j.logger.kafka.perf=DEBUG, kafkaAppender
 #log4j.logger.kafka.perf.ProducerPerformance$ProducerThread=DEBUG, kafkaAppender
-#log4j.logger.org.I0Itec.zkclient.ZkClient=DEBUG
+
 log4j.logger.kafka=<%= @loggerLevelKafka%>, kafkaAppender
+log4j.logger.org.apache.kafka=<%= @loggerLevelKafka%>, kafkaAppender
+
+log4j.logger.org.I0Itec.zkclient=<%= @loggerLevelZk %>, kafkaAppender
+log4j.logger.org.apache.zookeeper=<%= @loggerLevelZk %>, kafkaAppender
 
 log4j.logger.kafka.network.RequestChannel$=<%= @loggerLevelKafkaNetworkRequestChannel%>, requestAppender
 log4j.additivity.kafka.network.RequestChannel$=false
@@ -84,6 +89,7 @@ log4j.additivity.kafka.network.Processor=false
 #log4j.logger.kafka.network.Processor=TRACE, requestAppender
 #log4j.logger.kafka.server.KafkaApis=TRACE, requestAppender
 #log4j.additivity.kafka.server.KafkaApis=false
+
 log4j.logger.kafka.request.logger=<%= @loggerLevelKafkaRequestLogger%>, requestAppender
 log4j.additivity.kafka.request.logger=false
 
@@ -96,5 +102,5 @@ log4j.additivity.kafka.log.LogCleaner=false
 log4j.logger.state.change.logger=<%= @loggerLevelStateChangeLogger%>, stateChangeAppender
 log4j.additivity.state.change.logger=false
 
-log4j.logger.kafka.authorizer.logger=<%= @loggerLevelAuthroizerLogger%>, authorizerAppender
+log4j.logger.kafka.authorizer.logger=<%= @loggerLevelAuthorizerLogger%>, authorizerAppender
 log4j.additivity.kafka.authorizer.logger=false

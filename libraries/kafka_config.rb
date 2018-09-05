@@ -28,6 +28,7 @@ module KafkaClusterCookbook
                   'maxNumFiles' => '20',
                   'level' => {
                     'root' => 'INFO',
+                    'stdout.threshold' => 'INFO',
                     'kafka' => 'INFO',
                     'kafka.network.RequestChannel' => 'WARN',
                     'kafka.network.Processor' => 'WARN',
@@ -35,7 +36,8 @@ module KafkaClusterCookbook
                     'kafka.controller' => 'TRACE',
                     'kafka.log.LogCleaner' => 'INFO',
                     'state.change.logger' => 'TRACE',
-                    'kafka.authorizer.logger' => 'WARN'
+                    'kafka.authorizer.logger' => 'WARN',
+                    'zookeeper' => 'INFO'
                   }
                 })
 
@@ -71,6 +73,7 @@ module KafkaClusterCookbook
             mode '0644'
             variables(
               loggerLevelRoot: new_resource.log4j['level']['root'],
+              loggerStdoutThreshold: new_resource.log4j['level']['stdout.threshold'],
               loggerLevelKafka: new_resource.log4j['level']['kafka'],
               loggerLevelKafkaNetworkRequestChannel: new_resource.log4j['level']['kafka.network.RequestChannel'],
               loggerLevelKafkaNetworkProcessor: new_resource.log4j['level']['kafka.network.Processor'],
@@ -78,7 +81,8 @@ module KafkaClusterCookbook
               loggerLevelKafkaController: new_resource.log4j['level']['kafka.controller'],
               loggerLevelKafkaLogCleaner: new_resource.log4j['level']['kafka.log.LogCleaner'],
               loggerLevelStateChangeLogger: new_resource.log4j['level']['state.change.logger'],
-              loggerLevelAuthroizerLogger: new_resource.log4j['level']['kafka.authorizer.logger'],
+              loggerLevelAuthorizerLogger: new_resource.log4j['level']['kafka.authorizer.logger'],
+              loggerLevelZk: new_resource.log4j['level']['zookeeper'],
               fileAppender: new_resource.log4j['fileAppender'],
               maxFileSize: new_resource.log4j['maxFileSize'],
               maxNumFiles: new_resource.log4j['maxNumFiles']
