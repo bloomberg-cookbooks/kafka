@@ -18,11 +18,11 @@ poise_service_user node['kafka-cluster']['service_user'] do
 end
 
 user_ulimit node['kafka-cluster']['service_user'] do
-  filehandle_limit 32_768
+  filehandle_limit node['kafka-cluster']['ulimit']['filehandle_limit']
   notifies :restart, "kafka_service[#{node['kafka-cluster']['service_name']}]", :delayed
 end
 
-# set 'KAFKA_LOG4J_OPTS' if nodee['kafka-cluster']['config']['log4j']['customized'] is true
+# set 'KAFKA_LOG4J_OPTS' if node['kafka-cluster']['config']['log4j']['customized'] is true
 if node['kafka-cluster']['config']['log4j']['customized']
   config_directory = ::File.dirname(node['kafka-cluster']['config']['path'])
   log4j_config = ::File.join(config_directory, 'log4j.properties')

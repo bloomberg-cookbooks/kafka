@@ -22,21 +22,19 @@ Documentation:
   Enabled: false
 Encoding:
   Enabled: false
-Style/FileName:
-  Enabled: false
 LineLength:
   Enabled: false
 MethodLength:
   Enabled: false
 Metrics/AbcSize:
   Enabled: false
+Naming/FileName:
+  Enabled: false
 PerceivedComplexity:
   Enabled: false
 SpaceBeforeFirstArg:
   Enabled: false
 Style/ClassAndModuleChildren:
-  Enabled: false
-Style/FileName:
   Enabled: false
 Style/GuardClause:
   Enabled: false
