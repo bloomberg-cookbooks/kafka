@@ -143,6 +143,7 @@ module KafkaClusterCookbook
         service.user(new_resource.user)
         service.environment(new_resource.environment.merge(LOG_DIR: new_resource.log_dir))
         service.restart_on_update(true)
+        service.options(:systemd, template: 'kafka-cluster:systemd.service.erb')
       end
     end
   end
