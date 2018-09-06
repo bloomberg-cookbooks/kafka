@@ -1,6 +1,5 @@
 # kafka-cluster-cookbook
 [![Build Status](https://img.shields.io/travis/bloomberg/kafka-cookbook.svg)](https://travis-ci.org/bloomberg/kafka-cookbook)
-[![Code Quality](https://img.shields.io/codeclimate/github/bloomberg/kafka-cookbook.svg)](https://codeclimate.com/github/bloomberg/kafka-cookbook)
 [![Cookbook Version](https://img.shields.io/cookbook/v/kafka-cluster.svg)](https://supermarket.chef.io/cookbooks/kafka-cluster)
 [![License](https://img.shields.io/badge/license-Apache_2-blue.svg)](https://www.apache.org/licenses/LICENSE-2.0)
 
@@ -30,8 +29,8 @@ directly into the configuration and service resources.
 Out of the box the following platforms are certified to work and
 are tested using our [Test Kitchen][8] configuration. Additional platforms
 _may_ work, but your mileage may vary.
-- CentOS (RHEL) 6.6, 7.1
-- Ubuntu 12.04, 14.04
+- CentOS (RHEL) 7.x
+- Ubuntu LTS 14.04, 16.04, 18.04
 
 The correct way to use this cookbook is to create a [wrapper cookbook][2]
 which configures all of the members of the Apache Kafka cluster. This

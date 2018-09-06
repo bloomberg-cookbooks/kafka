@@ -1,14 +1,41 @@
----
-language: ruby
-cache: bundler
-sudo: false
-notifications:
-  slack: bloomberg-rnd:BvYmxrV9xj902XWTRNrkLNkR
-script: bundle exec rake travis
-rvm:
-  - 2.5
+sudo: required
+dist: trusty
+group: edge
+
+addons:
+  apt:
+    sources:
+      - chef-current-trusty
+    packages:
+      - chefdk
+
+install: echo "skip bundle install"
+
 branches:
   only:
     - master
-matrix:
-  fast_finish: true
+
+services: docker
+
+env:
+  matrix:
+    - INSTANCE=default-centos-7
+    - INSTANCE=default-ubuntu-1404
+    - INSTANCE=default-ubuntu-1604
+    - INSTANCE=default-ubuntu-1804
+
+before_script:
+  - sudo iptables -L DOCKER || ( echo "DOCKER iptables chain missing" ; sudo iptables -N DOCKER )
+  - eval "$(chef shell-init bash)"
+  - chef --version
+  - cookstyle --version
+  - foodcritic --version
+
+script: KITCHEN_LOCAL_YAML=.kitchen.dokken.yml kitchen verify ${INSTANCE}
+after_failure: cat .kitchen/logs/kitchen.log
+
+jobs:
+  include:
+    - stage: unit
+      script: chef exec delivery local all
+      env: UNIT_AND_LINT=1

@@ -37,8 +37,8 @@ module KafkaClusterCookbook
                     'kafka.log.LogCleaner' => 'INFO',
                     'state.change.logger' => 'TRACE',
                     'kafka.authorizer.logger' => 'WARN',
-                    'zookeeper' => 'INFO'
-                  }
+                    'zookeeper' => 'INFO',
+                  },
                 })
 
       # Outputs the +properties+ in the Java Properties file format. This is
