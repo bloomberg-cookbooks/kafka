@@ -20,6 +20,7 @@ module KafkaClusterCookbook
       attribute(:zookeeper, kind_of: [Array, String], required: true)
       attribute(:replication_factor, kind_of: Integer, default: 1)
       attribute(:partitions, kind_of: Integer, default: 1)
+      attribute(:configs, kind_of: [Array, String])
       attribute(:environment, kind_of: Hash, default: lazy { default_environment })
 
       # Builds shell command for managing Kafka topics.
@@ -30,6 +31,11 @@ module KafkaClusterCookbook
           c << ['--topic', topic_name]
           c << ['--zookeeper', [zookeeper].compact.join(',')]
           c << ['--partitions', partitions] if partitions
+          if type.to_s != 'delete'
+            configs.each do |config|
+              c << ['--config', config]
+            end if configs
+          end
           if type.to_s == 'create'
             c << ['--replication-factor', replication_factor] if replication_factor
           end
